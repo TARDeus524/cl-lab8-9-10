@@ -14,7 +14,7 @@ export default function MovieList({movies}: MovieProps) {
   }, [inputRef.current])
   return (
     <div className="w-full h-full flex flex-col justify-center items-center p-4">
-      <div className="w-full mb-4 flex justify-around">
+      <div className="w-full mb-4 flex justify-around flex-col md:flex-row">
       <input
         ref={inputRef}
         type="search"
@@ -22,19 +22,27 @@ export default function MovieList({movies}: MovieProps) {
         name="ms"
         placeholder="Пошук за назвою фільму"
         className={`border-white border-1 rounded-sm
-          w-4/6 h-12 text-center font-bold text-xl
+          w-full h-12 text-center font-bold text-xl
+          mb-4
           inset-shadow-[0_0_8px_rgba(150,150,150,0.5)]
           shadow-[0_0_8px_rgba(150,150,150,0.5)]
           focus:inset-shadow-[0_0_12px_rgba(255,255,255,0.5)]
           focus:shadow-[0_0_12px_rgba(255,255,255,0.5)]
           focus:outline-none active:outline-none
           active:shadow-[0_0_12px_rgba(255,255,255,0.5)]
-          active:inset-shadow-[0_0_12px_rgba(255,255,255,0.5)]`}
+          active:inset-shadow-[0_0_12px_rgba(255,255,255,0.5)]
+          md:w-4/6 md:pb-0`}
       />
 
-        <button className={`w-1/6 border-white border-1 rounded-sm font-bold text-3xl`} onClick={handleSearch}>Пошук</button>
+        <button className={`w-full border-white border-1 rounded-sm font-bold text-3xl
+          inset-shadow-[0_0_8px_rgba(150,150,150,0.5)]
+          shadow-[0_0_8px_rgba(150,150,150,0.5)]
+          hover:cursor-pointer
+          hover:inset-shadow-[0_0_8px_rgba(255,255,255,0.7)]
+          hover:shadow-[0_0_8px_rgba(255,255,255,0.7)]
+          md:w-1/6`} onClick={handleSearch}>Пошук</button>
       </div>
-      <ul className="w-full">
+      <ul className="w-full px-8">
         {movies
           .filter((movie) => movie.title.includes(searchText))
           .map((movie, key) => <MovieCard key={key} {...movie}/>)}
