@@ -1,10 +1,10 @@
-import MovieCard from "./components/MovieCard"
-import {movies} from './constants/TestMovieData'
+import MovieList from "./components/MovieList"
+import {movies} from './constants/movies'
 function App() {
 
   return (
-    <div className="">
-      <MovieCard {...movies[0]}/>
+    <div className="text-white">
+      <MovieList movies={movies}/>
     </div>
   )
 }

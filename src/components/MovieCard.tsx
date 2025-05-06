@@ -16,11 +16,9 @@ export default function MovieCard({title, description, genres, imageSrc, date}: 
   }, [date]);
 
   return (
-    <div className={`h-50 p-2
+    <div className={`h-50 p-2 mb-4
                      border-white border-1 rounded-md
                      flex flex-row
-                     text-white
-                     m-4
                      inset-shadow-[0_0_8px_rgba(255,255,255,0.5)]
                      shadow-[0_0_8px_rgba(255,255,255,0.5)]`}>
       <div className="h-full w-48 border-1 border-white mr-2">
