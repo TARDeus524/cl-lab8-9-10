@@ -1,27 +1,32 @@
 import { useMemo } from "react";
 import { Movie } from "../types/Movie";
+import { useNavigate } from "react-router";
 
-export default function MovieCard({title, description, genres, imageSrc, date}: Movie) {
+export default function MovieCard({id, title, description, genres, imageSrc, date}: Movie) {
   const formattedDate = useMemo(() => {
-    const d = new Date(date); // Create a Date object from the date prop
+    const d = new Date(date);
     const year: number = d.getFullYear();
-    let month: number | string = d.getMonth() + 1; // getMonth() is 0-indexed, so add 1
+    let month: number | string = d.getMonth() + 1; 
     let day: number | string = d.getDate();
 
-    // Ensure two-digit month and day
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
 
     return `${year}.${month}.${day}`;
-  }, [date]);
+  }, [date])
+
+  const navigate = useNavigate()
+
+  const handleReserveClick = () => {
+    navigate(`/booking/${id}`)
+  }
 
   return (
-    <div className={`min-h-50 max-h-90 overflow-hidden p-2 mb-4
+    <div className={`min-h-50 p-2 mb-4
                      border-white border-1 rounded-md
                      inset-shadow-[0_0_8px_rgba(255,255,255,0.5)]
                      shadow-[0_0_8px_rgba(255,255,255,0.5)]
                      hover:scale-101
-                     hover:cursor-pointer
                      hover:inset-shadow-[0_0_8px_rgba(255,255,255,0.7)]
                      hover:shadow-[0_0_8px_rgba(255,255,255,0.7)]
                      flex flex-col items-center md:flex-row md:justify-center`}>
@@ -35,9 +40,15 @@ export default function MovieCard({title, description, genres, imageSrc, date}: 
           {genres.map((genre, key) => <li className="mx-1" key={key}>{genre}</li>)}
         </ul>
       </div>
-      <div className={`h-8 w-32 ml-2 self-center
-                      flex items-center justify-center
-                      font-bold text-xl`}>{formattedDate}</div>
+      <div className={`min-h-8 min-w-32 md:mr-4 self-center
+                      flex flex-col items-center justify-center
+                      font-bold text-xl`}>
+        {formattedDate}
+        <button onClick={handleReserveClick} className={`p-1 md:mt-1 
+                hover:cursor-pointer hover:bg-gray-700 rounded-md`}>
+          Забронювати
+        </button>
+      </div>
     </div>
   )
 }
