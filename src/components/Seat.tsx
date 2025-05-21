@@ -11,6 +11,9 @@ function colorsByState(state: SeatStateEnum){
     case SeatStateEnum.Selected:
       return {bg: '#1E90FF', text: 'black'}
 
+    case SeatStateEnum.Booked:
+      return {bg: 'red', text: 'black'}
+      
     default:
       return {bg: '#00C853', text: 'black'}
   }
